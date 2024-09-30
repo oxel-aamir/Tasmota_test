@@ -41,6 +41,8 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v7
       with:
-        branch: oxel-develop2
+        branch: merge_temp
+        base: oxel-develop3
+        delete-branch: true
     - name: Timestamp
       run: date
