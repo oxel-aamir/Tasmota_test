@@ -1,4 +1,4 @@
-name: Sync with tasmota development branch
+name: Sync with tasmota development branch and Create a pull request
 on:
   schedule:
     - cron:  '0 9 * * 1'
