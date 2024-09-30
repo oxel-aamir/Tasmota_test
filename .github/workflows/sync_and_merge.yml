@@ -30,7 +30,7 @@ jobs:
 
     # Step 3: Create pull request if new commits are found
     - name: New commits found
-      if: steps.sync.outputs.has_new_commits == 'false'
+      if: steps.sync.outputs.has_new_commits == 'true'
       run: echo "New commits found."
     
     - name: No new commits
@@ -46,7 +46,7 @@ jobs:
 
   create_pull_request:
     runs-on: ubuntu-latest
-    name: Create a pull request in there are any changes upstream
+    name: Create a pull request
 
     steps:
     # Step 1: run a standard checkout action, provided by github
