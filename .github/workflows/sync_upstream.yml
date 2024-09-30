@@ -29,8 +29,8 @@ jobs:
         upstream_sync_repo: arendst/Tasmota
 
     # Step 3a: This step checks out a copy of repository.
-      - name: My first step - check out repository
-        uses: actions/checkout@v4
+    - name: My first step - check out repository
+      uses: actions/checkout@v4
 
     # Step 3b: Create pull request if new commits are found
     - name: New commits found
