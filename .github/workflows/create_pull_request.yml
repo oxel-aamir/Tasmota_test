@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - upstream-sync
+
+  workflow_dispatch:  # click the button on Github repo!
+
+
+  create_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: oxel-develop3
+    - name: Reset upstream-sync branch
+      run: |
+        git fetch origin upstream-sync:upstream-sync
+        git reset --hard upstream-sync
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v7
+      with:
+        branch: merge_temp
+        delete-branch: true
+    - name: Timestamp
+      run: date
