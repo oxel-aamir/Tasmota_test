@@ -1,9 +1,5 @@
 name: Create pull request
 on:
-  push:
-    branches:
-      - upstream-sync
-    # run on any push to upstream-sync branch
 
   workflow_dispatch:  # click the button on Github repo!
 
