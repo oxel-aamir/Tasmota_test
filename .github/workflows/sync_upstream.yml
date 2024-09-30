@@ -31,7 +31,10 @@ jobs:
     # Step 3: Display a sample message based on the sync output var 'has_new_commits'
     - name: New commits found
       if: steps.sync.outputs.has_new_commits == 'true'
-      run: echo "New commits were found to sync."
+        - name: Pull (Fast-Forward) upstream changes
+        id: pull_request
+        uses: ./.github/workflows/create_pull_request.yml
+        run: echo "New commits were found to sync."
     
     - name: No new commits
       if: steps.sync.outputs.has_new_commits == 'false'
