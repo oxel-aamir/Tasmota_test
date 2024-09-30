@@ -19,7 +19,6 @@ managed_components
 data
 unpacked_fs
 unpacked_boards
-tasmota/user_config_override.h
 variants
 variants3
 build
@@ -27,9 +26,7 @@ build_output/*
 firmware.map
 firmware.asm
 tasmota/tasmota.ino.cpp
-platformio_override.ini
 platformio_tasmota_cenv.ini
-platformio_tasmota_user_env.ini
 platformio_tasmota_core3_env.ini
 lib/libesp32/berry/generate/*
 lib/libesp32/berry/berry
@@ -47,3 +44,13 @@ lib/libesp32/berry/berry
 ## Python virtual environments for Platformio ##
 venv
 .venv
+
+## default tasmota workflows
+.github/wokflows/Tasmota_build_devel.yml
+.github/wokflows/Tasmota_build_master.yml
+.github/wokflows/build_all_the_things.yml
+.github/wokflows/copy_change.yml
+.github/wokflows/pr_comment.yml.off
+.github/wokflows/stale-actions.yml
+.github/config.yml
+.github/issue-close-app.yml
