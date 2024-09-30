@@ -1,0 +1,31 @@
+name: Create pull request
+on:
+  workflow_dispatch:  # click the button on Github repo!
+
+jobs:
+  create_pull_request:
+    runs-on: ubuntu-latest
+    name: Create a pull request in there are any changes upstream
+
+    steps:
+    # Step 1: run a standard checkout action, provided by github
+    - uses: actions/checkout@v4
+      with:
+        ref: oxel-develop3
+
+    # Step 2: Reset upstream-sync branch
+    - name: Reset upstream-sync branch
+      run: |
+        git fetch origin upstream-sync:upstream-sync
+        git reset --hard upstream-sync
+
+    # Step 3: Create Pull Request
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v7
+      with:
+        branch: merge_temp
+        delete-branch: true
+        
+    # Step 4: Print timestamp
+    - name: Timestamp
+      run: date

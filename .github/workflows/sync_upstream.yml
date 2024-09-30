@@ -28,10 +28,14 @@ jobs:
         upstream_sync_branch: development
         upstream_sync_repo: arendst/Tasmota
 
-    # Step 3: Create pull request if new commits are found
+    # Step 3a: This step checks out a copy of repository.
+      - name: My first step - check out repository
+        uses: actions/checkout@v4
+
+    # Step 3b: Create pull request if new commits are found
     - name: New commits found
       if: steps.sync.outputs.has_new_commits == 'true'
-      uses: ./.github/workflows/create_pull_request.yml
+      uses: ./.github/actions/create_pull_request@master
     
     - name: No new commits
       if: steps.sync.outputs.has_new_commits == 'false'
