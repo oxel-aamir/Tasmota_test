@@ -1,6 +1,9 @@
 name: Create pull request
 on:
+<<<<<<< HEAD
 
+=======
+>>>>>>> b9dca0e9a8cc0a3b905c9269fab84234ce3b6618
   workflow_dispatch:  # click the button on Github repo!
 
 jobs:

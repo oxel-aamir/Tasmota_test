@@ -1,3 +1,4 @@
+name: Sync with tasmota development branch
 on:
   schedule:
     - cron:  '0 9 * * 1'
@@ -5,16 +6,19 @@ on:
 
   workflow_dispatch:  # click the button on Github repo!
 
-
 jobs:
   sync_with_upstream:
     runs-on: ubuntu-latest
     name: Sync branch upstream-sync with tasmota development branch
+    
     steps:
+    # Step 1: run a standard checkout action, provided by github
     - name: Checkout upstream-sync branch
       uses: actions/checkout@v4
       with:
         ref: upstream-sync
+
+    # Step 2: run the sync action
     - name: Pull (Fast-Forward) upstream changes
       id: sync
       uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
@@ -23,25 +27,19 @@ jobs:
         target_repo_token: ${{ secrets.GITHUB_TOKEN }}
         upstream_sync_branch: development
         upstream_sync_repo: arendst/Tasmota
-    - name: Check for new commits
-      if: steps.sync.outputs.has_new_commits
-      run: echo "There were new commits."
-    - name: Timestamp
-      run: date
-  create_pull_request:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: oxel-develop3
-    - name: Reset upstream-sync branch
-      run: |
-        git fetch origin upstream-sync:upstream-sync
-        git reset --hard upstream-sync
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v7
-      with:
-        branch: merge_temp
-        delete-branch: true
+
+    # Step 3: Create pull request if new commits are found
+    - name: New commits found
+      if: steps.sync.outputs.has_new_commits == 'true'
+      uses: oxel-aamir/tasmota_test/.github/workflows/create_pull_request.yml@master
+    
+    - name: No new commits
+      if: steps.sync.outputs.has_new_commits == 'false'
+      run: echo "There were no new commits."
+      
+    - name: Show value of 'has_new_commits'
+      run: echo ${{ steps.sync.outputs.has_new_commits }}
+        
+    # Step 4: Print timestamp
     - name: Timestamp
       run: date
