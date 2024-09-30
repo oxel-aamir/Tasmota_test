@@ -31,7 +31,7 @@ jobs:
     # Step 3: Create pull request if new commits are found
     - name: New commits found
       if: steps.sync.outputs.has_new_commits == 'true'
-      uses: ./.github/workflows/create_pull_request.yml@master
+      uses: oxel-aamir/tasmota_test/.github/workflows/create_pull_request.yml@master
     
     - name: No new commits
       if: steps.sync.outputs.has_new_commits == 'false'
