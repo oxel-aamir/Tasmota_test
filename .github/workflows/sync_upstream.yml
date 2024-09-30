@@ -40,6 +40,6 @@ jobs:
     - name: Show value of 'has_new_commits'
       run: echo ${{ steps.sync.outputs.has_new_commits }}
         
-    # Step 3: Print timestamp
+    # Step 4: Print timestamp
     - name: Timestamp
       run: date
