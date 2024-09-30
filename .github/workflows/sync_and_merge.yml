@@ -9,12 +9,12 @@ on:
 jobs:
   sync_with_upstream:
     runs-on: ubuntu-latest
-    name: Sync branch upstream with tasmota development branch
+    name: Sync branch upstream-sync with tasmota development branch
     steps:
-    - name: Checkout upstream branch
+    - name: Checkout upstream-sync branch
       uses: actions/checkout@v4
       with:
-        ref: upstream
+        ref: upstream-sync
     - name: Pull (Fast-Forward) upstream changes
       id: sync
       uses: aormsby/Fork-Sync-With-Upstream-action@v2.1
