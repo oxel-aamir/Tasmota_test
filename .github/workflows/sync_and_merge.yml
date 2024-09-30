@@ -17,12 +17,16 @@ jobs:
         ref: upstream-sync
     - name: Pull (Fast-Forward) upstream changes
       id: sync
-      uses: aormsby/Fork-Sync-With-Upstream-action@v2.1
+      uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
       with:
-        upstream_repository: arendst/Tasmota
-        upstream_branch: development
-        target_branch: upstream-sync
-        git_pull_args: --ff-only                    # optional arg use, defaults to simple 'pull'
+        target_sync_branch: upstream-sync
+        target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+        upstream_sync_branch: development
+        upstream_sync_repo: arendst/Tasmota
+        #upstream_repository: arendst/Tasmota
+        #upstream_branch: development
+        #target_branch: upstream-sync
+        #git_pull_args: --ff-only                    # optional arg use, defaults to simple 'pull'
     - name: Check for new commits
       if: steps.sync.outputs.has_new_commits
       run: echo "There were new commits."
