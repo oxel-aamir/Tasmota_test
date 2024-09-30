@@ -32,20 +32,16 @@ jobs:
       run: echo "There were new commits."
     - name: Timestamp
       run: date
-  merge_upstream_pull_request:
+  create_pull_request:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: oxel-develop
-    - name: Reset oxel-develop branch
-      run: |
-        git fetch origin upstream-sync:upstream-sync
-        git reset --hard upstream-sync
+        ref: upstream-sync
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v6.1.0
+      uses: peter-evans/create-pull-request@v7
       with:
-        branch: merge_temp
+        branch: oxel-develop
         delete-branch: true
     - name: Timestamp
       run: date
