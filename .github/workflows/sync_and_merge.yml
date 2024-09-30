@@ -42,6 +42,6 @@ jobs:
       uses: peter-evans/create-pull-request@v7
       with:
         branch: merge_temp
-         delete-branch: true
+        delete-branch: true
     - name: Timestamp
       run: date
