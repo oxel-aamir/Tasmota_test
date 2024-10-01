@@ -28,15 +28,7 @@ jobs:
         upstream_sync_branch: development
         upstream_sync_repo: arendst/Tasmota
 
-    # Step 3: Create pull request if new commits are found
-    - name: New commits found
-      if: steps.sync.outputs.has_new_commits == 'true'
-      run: echo "New commits found."
-    
-    - name: No new commits
-      if: steps.sync.outputs.has_new_commits == 'false'
-      run: echo "There were no new commits."
-      
+    # Step 3: Print value of 'has_new_commits'     
     - name: Show value of 'has_new_commits'
       run: echo ${{ steps.sync.outputs.has_new_commits }}
         
